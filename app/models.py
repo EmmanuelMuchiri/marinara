@@ -35,7 +35,22 @@ class Admin(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
-    password = 'Admin'
+    password =db.Column(db.String(5))
 
     def __repr__(self):
         return f'User {self.name}'
+    
+class Order(db.Model):
+    __tablename__ = 'orders'
+    id = db.Column(db.Integer,primary_key = True)
+    Quantity = db.Column(db.Integer)
+    Description = db.Column(db.String(255))
+    time = db.Column(db.DateTime, default = datetime.utcnow)
+    clientID = db.Column(db.Integer, db.ForeignKey('users.id'))
+    totalCost = db.Column(db.Integer)
+    
+    def save_order(self):
+        db.session.add(self)
+        db.session.commit()
+        
+        return orders
