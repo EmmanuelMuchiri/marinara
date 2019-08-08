@@ -35,15 +35,16 @@ class Admin(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
-    password =db.Column(db.String(5))
+    password = db.Column(db.String(5))
 
     def __repr__(self):
-        return f'User {self.name}'
+        return f'Admin {self.name}'
     
 class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer,primary_key = True)
     Quantity = db.Column(db.Integer)
+    cost=db.Column(db.Integer)
     Description = db.Column(db.String(255))
     time = db.Column(db.DateTime, default = datetime.utcnow)
     clientID = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -52,5 +53,26 @@ class Order(db.Model):
     def save_order(self):
         db.session.add(self)
         db.session.commit()
-        
         return orders
+    def calculate_total_cost(self,quantity,prize):
+        total = Quantity * cost
+        return total(self.totalCost)
+    
+    def __repr__(self):
+        return f'Order {self.totalCost}'
+    
+    
+# class PizzaSize(db.Model):
+#     __tablename__ = 'pizzasizes'
+#     id = db.Column(db.Integer,primary_key = True)
+#     Quantity = db.Column(db.Integer)
+#     Description = db.Column(db.String(255))
+#     time = db.Column(db.DateTime, default = datetime.utcnow)
+#     clientID = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     totalCost = db.Column(db.Integer)
+    
+#     def save_order(self):
+#         db.session.add(self)
+#         db.session.commit()
+        
+#         return pizzasizes
