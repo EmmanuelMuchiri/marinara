@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import UpdateProfile
+from .forms import UpdateProfile,OrderForm
 from ..models import User,Admin
 from flask_login import login_required,current_user
 from .. import db,photos
@@ -25,15 +25,6 @@ def profile(uname):
     return render_template("profile/profile.html", user = user)
 
 
-# @main.route('/admin/<uname>')
-# @login_required
-# def profile(password):
-#     user_admin = Admin.query.filter_by(password = password).first()
-
-#     if user is None:
-#         abort(404)
-
-#     return render_template("admin/profile.html", user_admin = user_admin)
 
 
 

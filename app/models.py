@@ -61,18 +61,3 @@ class Order(db.Model):
     def __repr__(self):
         return f'Order {self.totalCost}'
     
-    
-# class PizzaSize(db.Model):
-#     __tablename__ = 'pizzasizes'
-#     id = db.Column(db.Integer,primary_key = True)
-#     Quantity = db.Column(db.Integer)
-#     Description = db.Column(db.String(255))
-#     time = db.Column(db.DateTime, default = datetime.utcnow)
-#     clientID = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     totalCost = db.Column(db.Integer)
-    
-#     def save_order(self):
-#         db.session.add(self)
-#         db.session.commit()
-        
-#         return pizzasizes
